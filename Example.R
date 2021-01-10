@@ -20,9 +20,11 @@ for(i in 1:p)
 set.seed(s)
 Paa=matrix(as.numeric(runif(N^2,0,1)<a1),N,N)
 Pbb=matrix(as.numeric(runif(N^2,0,1)<a2),N,N)
-Pcc=matrix(as.numeric(runif(N^2,0,1)<0),N,N)
 Pab=matrix(as.numeric(runif(N^2,0,1)<b),N,N)
 
+PAA=matrix(as.numeric(runif((2*N)^2,0,1)<a1),2*N,2*N)
+PBB=matrix(as.numeric(runif((2*N)^2,0,1)<a2),2*N,2*N)
+PAB=matrix(as.numeric(runif((2*N)^2,0,1)<b),2*N,2*N)
 
 if(struc==1)
 {
@@ -30,7 +32,7 @@ if(struc==1)
 }
 if (struc==2)
 {
-  W=rbind(cbind(Paa,Paa,Pab,Pab),cbind(Paa,Paa,Pab,Pab),cbind(Pab,Pab,Pbb,Pbb),cbind(Pab,Pab,Pbb,Pbb))
+  W=rbind(cbind(PAA,PAB),cbind(PAB,PBB))
   
 }
 if (struc==3)
@@ -50,7 +52,7 @@ library(MASS)
 library(igraph)
 library(e1071)
 
-N=50; p=5; 
+N=100; p=5; 
 num_sim=100 # given an adjcent matrix repeat X for num_sim times. 
 num_block=2
 struc=2 #1:(2c); 2:(2a); 3:(2b)
